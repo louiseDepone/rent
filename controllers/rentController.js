@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const {db} = require("../configs/database");
+const  {decoding} = require('../services/jwt')
 
 const Rent = {
 
@@ -56,7 +57,7 @@ const Rent = {
         
             const {name, full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;
         
-            if (!name || !brand || !price_per_day ) {
+            if (name || full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
                 return res.status(400).send({message:'please providename, brand, price_per_day'});
             } 
         
@@ -79,11 +80,14 @@ const Rent = {
 
     Post:{
         async singleRent(req,res){
+            decode = decoding(req)
             try{
                 const {name, full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;;
-        
-                const queryInsert = 'INSERT INTO rent (name, full_payment,device_id,rent_end,rent_start,status_id,quantity) VALUES (?,?,?,?,?,?,?)'
-                await db.promise().execute(queryInsert, [name, full_payment,device_id,rent_end,rent_start,status_id,quantity])
+                if (name || full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
+                    return res.status(400).send({message:'please provide input'});
+                } 
+                const queryInsert = 'INSERT INTO rent (name, full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?,?)'
+                await db.promise().execute(queryInsert, [name, full_payment,device_id,rent_end,rent_start,status_id,quantity, decoding.id])
         
                 res.status(201).json({message: 'Rent added successfuly'})
             } catch (error){
@@ -100,10 +104,6 @@ const Rent = {
                 let id = req.params.id;
     
                 const {soft_delete} = req.body;
-            
-                if (!soft_delete) {
-                    return res.status(400).send({message:`please providen soft_delete`});
-                } 
             
                 try { 
                     db.query(`UPDATE rent SET soft_delete = ? WHERE id = ?`,[soft_delete, id],(err,result, fields) => {

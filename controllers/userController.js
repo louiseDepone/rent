@@ -86,9 +86,7 @@ const User = {
                 
                     const {soft_delete} = req.body;
                 
-                    if (!soft_delete) {
-                        return res.status(400).send({message:`please providen soft_delete`});
-                    } 
+                   
                 
                     try { 
 

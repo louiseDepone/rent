@@ -100,9 +100,7 @@ const Availability = {
     
                 const {soft_delete} = req.body;
             
-                if (!soft_delete) {
-                    return res.status(400).send({message:`please providen soft_delete`});
-                } 
+      
             
                 try { 
                     db.query(`UPDATE availability SET soft_delete = ? WHERE id = ?`,[soft_delete, id],(err,result, fields) => {
