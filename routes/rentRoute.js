@@ -9,6 +9,7 @@ router.delete('/rent/:id', authenticateToken, rentsController.Delete.singleRent)
 router.put('/rent/:id', authenticateToken, rentsController.Put.singleRent)
 
 router.get('/rents', authenticateToken, rentsController.Get.allRent)
+router.post('/rents', authenticateToken, rentsController.Post.allRent)
 
 
 

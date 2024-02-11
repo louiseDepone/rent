@@ -9,6 +9,7 @@ router.delete('/device/:id', authenticateToken, deviceController.Delete.singleDe
 router.put('/device/:id', authenticateToken, deviceController.Put.singleDevice)
 
 router.get('/devices', authenticateToken, deviceController.Get.allDevice)
+router.post('/devices', authenticateToken, deviceController.Post.allDevice)
 
 
 
