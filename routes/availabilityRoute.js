@@ -5,7 +5,7 @@ const availabilitysController = require("../controllers/availabilityController")
 const {authenticateToken} = require('../middlewares/authMiddleware');
 
 router.get('/availability/:id', authenticateToken, availabilitysController.Get.singleAvailability)
-router.get('/availability', authenticateToken, availabilitysController.Post.singleAvailability)
+router.post('/availability', authenticateToken, availabilitysController.Post.singleAvailability)
 router.delete('/availability/:id', authenticateToken, availabilitysController.Delete.singleAvailability)
 router.put('/availability/:id', authenticateToken, availabilitysController.Put.singleAvailability)
 
