@@ -83,7 +83,7 @@ const Rent = {
             decode = decoding(req)
             try{
                 const { full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;;
-                if ( full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
+                if ( !full_payment || !device_id || !rent_end || !rent_start || !status_id || !quantity ) {
                     return res.status(400).send({message:'please provide input'});
                 } 
                 const queryInsert = 'INSERT INTO rent (full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?,?)'
