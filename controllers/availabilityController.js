@@ -96,30 +96,31 @@ const Availability = {
     //This up for change to update and setting the isDeleted column to True or 1.  
     Delete: {
             singleAvailability (req, res) {
-
                 let id = req.params.id;
+    
+                const {soft_delete} = req.body;
             
-                if (!id) {
-                    return res.status(400).send({error: true, message :'Please provide id'});
-                }
-                try{
-                    db.query('DELETE FROM availability WHERE id = ?;', id, (err, result) => {
-                        
-                        if(err){
-                        console.error('erroe fetching items:', err);
-                        res.status(500).json({ message: 'Internal server error'})
-                      } else {
+                if (!soft_delete) {
+                    return res.status(400).send({message:`please providen soft_delete`});
+                } 
+            
+                try { 
+                    db.query(`UPDATE availability SET soft_delete = ? WHERE id = ?`,[soft_delete, id],(err,result, fields) => {
+                    if (err){
+                        console.error(`error updating:`, err);
+                        res.status(500).json({message:`internall server error`});
+                    }else {
                         res.status(200).json(result);
-                      }  
-                    });
+                    }
+                });
             
-                } catch (errror){
-            
-                    console.error('Error loadng availability:', error);
-                    res.status(500).json({error: 'interrnal server error'})
-                }   
+                } catch (error) {
+                    console.error(`error loading Device`, error);
+                    res.status(500).json({ error: `internnal server error` });
+                }
         }
     },
+
 
 
     

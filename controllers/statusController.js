@@ -88,6 +88,28 @@ const Status = {
     //This up for change to update and setting the isDeleted column to True or 1.  
     Delete: {
         singleStatus (req, res) {
+            let id = req.params.id;
+    
+            const {soft_delete} = req.body;
+        
+            if (!soft_delete) {
+                return res.status(400).send({message:`please providen soft_delete`});
+            } 
+        
+            try { 
+                db.query(`UPDATE status SET soft_delete = ? WHERE id = ?`,[soft_delete, id],(err,result, fields) => {
+                if (err){
+                    console.error(`error updating:`, err);
+                    res.status(500).json({message:`internall server error`});
+                }else {
+                    res.status(200).json(result);
+                }
+            });
+        
+            } catch (error) {
+                console.error(`error loading Device`, error);
+                res.status(500).json({ error: `internnal server error` });
+            }
         }
     },
 }

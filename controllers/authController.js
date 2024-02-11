@@ -15,6 +15,7 @@ const  authentication = {
             role_id =  2;
         }
         try{
+            
             const hashPass = await bcrypt.hash(password, 10);
     
             const queryInsert = 'INSERT INTO user (name, email, password, role_id, residence_address, contact_number) VALUES (?, ?, ?, ?, ?, ?)';
@@ -35,7 +36,7 @@ const  authentication = {
         try {
             const{email, password} = req.body;
     
-            const getUserQuery = 'SELECT * FROM user WHERE email = ?';
+            const getUserQuery = 'SELECT * FROM user WHERE email = ? AND soft_delete = false';
             const[rows] = await db.promise().execute(getUserQuery,[email]);
     
             if ( rows.length === 0) {

@@ -11,6 +11,8 @@ const deviceRoute = require("./routes/deviceRoute");
 const rentRoute = require("./routes/rentRoute");
 const statusRoute = require("./routes/statusRoute");
 const availabilityRoute = require("./routes/availabilityRoute");
+const deviceInformationRoute = require("./routes/deviceInformationRoute");
+const renterRoute = require("./routes/renterRoute");
 
 const app = express();
 const PORT = process.env.PORT
@@ -19,7 +21,8 @@ app.use(bodyParser.json());
 
 
 app.use("/auth", authRoute)
-app.use("/",rolesRoute,usersRoute,deviceRoute,rentRoute,statusRoute, availabilityRoute)
+app.use("/",rolesRoute,usersRoute,deviceRoute,rentRoute,statusRoute, availabilityRoute,deviceInformationRoute
+,renterRoute)
 
 app.listen(PORT, () => {
     console.log(`Server Address:`,PORT)
