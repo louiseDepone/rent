@@ -83,7 +83,7 @@ const Role = {
                 res.status(500).json({ error: 'internnal server error' });
             }    
         }
-    },
+    }, 
 
     Post:{
         async singleRole(req,res){

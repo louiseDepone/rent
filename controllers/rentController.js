@@ -86,8 +86,9 @@ const Rent = {
                 if ( !full_payment || !device_id || !rent_end || !rent_start || !status_id || !quantity ) {
                     return res.status(400).send({message:'please provide input'});
                 } 
-                const queryInsert = 'INSERT INTO rent (full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?,?)'
-                await db.promise().execute(queryInsert, [full_payment,device_id,rent_end,rent_start,status_id,quantity, decoding.id])
+                console.log(full_payment,device_id,rent_end,rent_start,status_id,quantity,decode.id)
+                const queryInsert = 'INSERT INTO rent (full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?)'
+                await db.promise().execute(queryInsert, [full_payment,device_id,rent_end,rent_start,status_id,quantity, decode.id])
         
                 res.status(201).json({message: 'Rent added successfuly'})
             } catch (error){

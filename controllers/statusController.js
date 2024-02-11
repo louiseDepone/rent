@@ -23,7 +23,7 @@ const Status = {
                 console.error('Error loadng user:', error);
                 res.status(500).json({error: 'interrnal server error'})
             }
-        },
+        }, 
 
         allStatuss (req, res) {
             try {
