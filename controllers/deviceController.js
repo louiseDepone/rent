@@ -49,20 +49,21 @@ const Device = {
             }
         }
     },
+    
     Put: { 
         
         async singleDevice(req,  res){
 
             let id = req.params.id;
         
-            const {name, brand, price_per_day} = req.body;
+            const {name, brand, price_per_day, description} = req.body;
         
-            if (!name || !brand || !price_per_day ) {
-                return res.status(400).send({message:`please providename, brand, price_per_day`});
+            if (!name || !brand || !price_per_day || !description  ) {
+                return res.status(400).send({message:`please providename, brand, price_per_day, description`});
             } 
         
             try { 
-                db.query(`UPDATE Device SET name = ?, email = ?, password = ?, role_id = ?, residence_address = ?, contact_number = ? WHERE id = ?`,[name, email, password, role_id, residence_address, contact_number, id],(err,result, fields) => {
+                db.query(`UPDATE Device SET name = ?, brand = ?, price_per_day  = ?, description = ? WHERE id = ?`,[name, brand, price_per_day, description, id],(err,result, fields) => {
                 if (err){
                     console.error(`error updating:`, err);
                     res.status(500).json({message:`internall server error`});
@@ -77,13 +78,16 @@ const Device = {
             }
         }
     },
+
+
+
     Post:{
         async singleDevice(req,res){
             try{
-                const {name, brand, price_per_day} = req.body;;
+                const {name, brand, price_per_day, description} = req.body;;
         
-                const queryInsert = `INSERT INTO device (name, brand, price_per_day) VALUES (?,?,?)`
-                await db.promise().execute(queryInsert, [name, brand, price_per_day])
+                const queryInsert = `INSERT INTO device (name, brand, price_per_day, description) VALUES (?,?,?)`
+                await db.promise().execute(queryInsert, [name, brand, price_per_day, description])
         
                 res.status(201).json({message: `Device added successfuly`})
             } catch (error){
