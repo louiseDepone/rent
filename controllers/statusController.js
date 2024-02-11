@@ -62,14 +62,14 @@ const Status = {
         async singleStatus(req, res){
             let status_id = req.params.id;
         
-            const{status_code,name} = req.body;
+            const{name} = req.body;
         
-            if (!status_code || name) {
+            if ( name) {
                 return res.status(400).send({error: user,message:'please provide status_code andname'});
             } 
         
             try { 
-                db.query('UPDATE status SET status_code = ?,name = ? WHERE id = ?',[status_code,name, status_id],(err,result, fields) => {
+                db.query('UPDATE status SET name = ? WHERE id = ?',[name, status_id],(err,result, fields) => {
                 if (err){
                     console.error('error updating:', err);
                     res.status(500).json({message:'internall server error'});

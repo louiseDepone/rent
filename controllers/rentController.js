@@ -55,14 +55,14 @@ const Rent = {
 
             let id = req.params.id;
         
-            const {name, full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;
+            const {full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;
         
-            if (name || full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
+            if ( full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
                 return res.status(400).send({message:'please providename, brand, price_per_day'});
             } 
         
             try { 
-                db.query('UPDATE rent SET name = ?, full_payment = ?, device_id = ?, rent_end = ?, rent_start = ?, status_id = ?, quantity = ? WHERE id = ?',[name, full_payment,device_id,rent_end,rent_start,status_id,quantity, id],(err,result, fields) => {
+                db.query('UPDATE rent SET  full_payment = ?, device_id = ?, rent_end = ?, rent_start = ?, status_id = ?, quantity = ? WHERE id = ?',[name, full_payment,device_id,rent_end,rent_start,status_id,quantity, id],(err,result, fields) => {
                 if (err){
                     console.error('error updating:', err);
                     res.status(500).json({message:'internall server error'});
@@ -82,12 +82,12 @@ const Rent = {
         async singleRent(req,res){
             decode = decoding(req)
             try{
-                const {name, full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;;
-                if (name || full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
+                const { full_payment,device_id,rent_end,rent_start,status_id,quantity} = req.body;;
+                if ( full_payment || device_id || rent_end || rent_start || status_id || quantity ) {
                     return res.status(400).send({message:'please provide input'});
                 } 
-                const queryInsert = 'INSERT INTO rent (name, full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?,?)'
-                await db.promise().execute(queryInsert, [name, full_payment,device_id,rent_end,rent_start,status_id,quantity, decoding.id])
+                const queryInsert = 'INSERT INTO rent (full_payment,device_id,rent_end,rent_start,status_id,quantity,user_id) VALUES (?,?,?,?,?,?,?,?)'
+                await db.promise().execute(queryInsert, [full_payment,device_id,rent_end,rent_start,status_id,quantity, decoding.id])
         
                 res.status(201).json({message: 'Rent added successfuly'})
             } catch (error){
