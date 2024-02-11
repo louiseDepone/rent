@@ -48,7 +48,7 @@ const Status = {
             try{
                 const {name} = req.body;;
         
-                const queryInsert = 'INSERT INTO status name) VALUES (?)'
+                const queryInsert = 'INSERT INTO status (name) VALUES (?)'
                 await db.promise().execute(queryInsert, [name])
         
                 res.status(201).json({message: 'status added successfuly'})

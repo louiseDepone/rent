@@ -50,7 +50,7 @@ const Rent = {
         }
     },
     Put: { 
-        
+         
         async singleRent(req,  res){
 
             let id = req.params.id;
