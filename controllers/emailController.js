@@ -31,19 +31,19 @@ const Email = {
             to: rows[0].email,
             subject: 'Approval for Your iRent Device Rental',
             text: `Hi ${rows[0].user_name},
-Good news! Your request to rent a device from "iRent" has been approved. Here are the details:\n
-\n
+Good news! Your request to rent a device from "iRent" has been approved. Here are the details:
+
 Device Details:
-Name: ${rows[0].device_name}
-Brand: ${rows[0].device_brand}
-Description: ${rows[0].description}
-\n
+\tName: ${rows[0].device_name}
+\tBrand: ${rows[0].device_brand}
+\tDescription: ${rows[0].description}
+
 Renter Information:
-Name: ${rows[0].user_name}
-Start Date: ${rows[0].rent_start}
-Expect Return Date: ${rows[0].rent_end}
+\tName: ${rows[0].user_name}
+\tStart Date: ${rows[0].rent_start}
+\tExpect Return Date: ${rows[0].rent_end}
+
 If you have any questions or need further assistance, feel free to reach out.
-\n
 Thanks,
 Irent`
         };
