@@ -17,14 +17,17 @@ const Email = {
         const transporter = nodemailer.createTransport({
             service: 'gmail' ,
             auth: { 
-                user: 'irentdevice@gmail.com',
-                pass: 'irentdevicefromyou12345' 
+                // user: 'irentdevice@gmail.com',
+                user: 'otpsender248@gmail.com',
+                pass: 'tuiywbfiokjdmjgz' 
+                // pass: 'irentdevicefromyou12345' 
             }  
         });
           
 
         const mailOptions = {
-            from: 'irentdevice@gmail.com',
+            from: 'otpsender248@gmail.com',
+            // from: 'irentdevice@gmail.com',
             to: rows[0].email,
             subject: 'Approval for Your iRent Device Rental',
             text: `Hi ${rows[0].user_name},
