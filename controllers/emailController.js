@@ -31,22 +31,21 @@ const Email = {
             to: rows[0].email,
             subject: 'Approval for Your iRent Device Rental',
             text: `Hi ${rows[0].user_name},
-
-            Good news! Your request to rent a device from "iRent" has been approved. Here are the details:\n
-            \n
-            Device Details:\n
-            Name: ${rows[0].device_name}\n
-            Brand: ${rows[0].device_brand}\n
-            Description: ${rows[0].description}
-            \n
-            Renter Information:\n
-            Name: ${rows[0].user_name}\n
-            Start Date: ${rows[0].rent_start}\n
-            Expect Return Date: ${rows[0].rent_end}\n
-            If you have any questions or need further assistance, feel free to reach out.\n
-            \n
-            Thanks,\n
-            Irent`
+Good news! Your request to rent a device from "iRent" has been approved. Here are the details:\n
+\n
+Device Details:
+Name: ${rows[0].device_name}
+Brand: ${rows[0].device_brand}
+Description: ${rows[0].description}
+\n
+Renter Information:
+Name: ${rows[0].user_name}
+Start Date: ${rows[0].rent_start}
+Expect Return Date: ${rows[0].rent_end}
+If you have any questions or need further assistance, feel free to reach out.
+\n
+Thanks,
+Irent`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
