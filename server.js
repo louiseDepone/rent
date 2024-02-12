@@ -15,7 +15,7 @@ const deviceInformationRoute = require("./routes/deviceInformationRoute");
 const renterRoute = require("./routes/renterRoute");
 const emailRoute = require("./routes/emailRoute");
 
-const app = express();
+const app = express(); 
 const PORT = process.env.PORT
 app.use(cors());
 app.use(bodyParser.json());

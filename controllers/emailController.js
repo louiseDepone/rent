@@ -6,7 +6,7 @@ const Email = {
         const {rent_id} = req.body;
       
         const getUserQuery = `SELECT r.id AS rent_id, r.device_id AS rent_device_id, r.user_id AS rent_user_id, r.status_id, r.rent_start, r.rent_end, r.full_payment, r.timeStamp, r.soft_delete AS rent_soft_delete,
-        d.id AS device_id, d.name AS device_name, d.description,d.brand AS device_brand, d.price_per_day AS device_price_per_day, d.soft_delete AS device_soft_delete,
+        d.id AS device_id, d.name AS device_name, d.processor, d.memory, d.storage, d.display_resolution,d.description,d.brand AS device_brand, d.price_per_day AS device_price_per_day, d.soft_delete AS device_soft_delete,
         u.id AS user_id, u.name AS user_name, u.residence_address, u.email, u.role_id, u.contact_number, u.password, u.soft_delete AS user_soft_delete
         FROM rent r
         JOIN device d ON r.device_id = d.id
@@ -36,6 +36,10 @@ Good news! Your request to rent a device from "iRent" has been approved. Here ar
 Device Details:
 \tName: ${rows[0].device_name}
 \tBrand: ${rows[0].device_brand}
+\tProcessor: ${rows[0].processor}
+\tMemory: ${rows[0].memory}
+\tStorage: ${rows[0].storage}
+\tDisplay_resolution: ${rows[0].display_resolution}
 \tDescription: ${rows[0].description}
 
 Renter Information:
