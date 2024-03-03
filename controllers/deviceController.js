@@ -33,7 +33,7 @@ const Device = {
         allDevice (req, res) {
             const isadmin = decoding(req).role_id
             try {
-                db.query(`SELECT * FROM device ${isadmin == 2 && "WHERE soft_delete = false"}`,(err, result) => {
+                db.query(`SELECT * FROM device ${isadmin == 2 ? "WHERE soft_delete = false" : " "}`,(err, result) => {
         
                     if(err) {
                         console.error(`error fetching items:`, err);
