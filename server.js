@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -15,16 +15,28 @@ const deviceInformationRoute = require("./routes/deviceInformationRoute");
 const renterRoute = require("./routes/renterRoute");
 const emailRoute = require("./routes/emailRoute");
 
-const app = express(); 
-const PORT = process.env.PORT
+const app = express();
+const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
+app.get("/hello", (req, res) => {
+  res.status(200).json({ message: `Hello there!` });
+});
 
-
-app.use("/auth", authRoute)
-app.use("/",rolesRoute,usersRoute,deviceRoute,rentRoute,statusRoute, availabilityRoute,deviceInformationRoute
-,renterRoute,emailRoute)
+app.use("/auth", authRoute);
+app.use(
+  "/",
+  rolesRoute,
+  usersRoute,
+  deviceRoute,
+  rentRoute,
+  statusRoute,
+  availabilityRoute,
+  deviceInformationRoute,
+  renterRoute,
+  emailRoute
+);
 
 app.listen(PORT, () => {
-    console.log(`Server Address:`,PORT)
+  console.log(`Server Address:`, PORT);
 });

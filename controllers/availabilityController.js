@@ -28,6 +28,7 @@ const Availability = {
                 res.status(500).json({error: 'interrnal server error'})
             }
         },
+        
 
         allAvailability (req, res) {
 
