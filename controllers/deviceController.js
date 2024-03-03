@@ -37,7 +37,7 @@ const Device = {
         
                     if(err) {
                         console.error(`error fetching items:`, err);
-                        req.status(500).json({ error: `Internal Server Error` });
+                        res.status(500).json({ error: `Internal Server Error` });
                     }else{
                         res.status(200).json({result});
                     }
