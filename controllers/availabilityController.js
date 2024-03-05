@@ -84,7 +84,7 @@ const Availability = {
             try{
                 const {device_id, stock, available, status} = req.body;;
         
-                const queryInsert = 'INSERT INTO availability (device_id, stock, available, status) VALUES (?,?,?,?)'
+                const queryInsert = 'INSERT INTO availability (device_id, stock, available, status) VALUES (?,?,?,?)' 
                 await db.promise().execute(queryInsert, [device_id, stock, available, status])
         
                 res.status(201).json({message: 'availability added successfuly'})

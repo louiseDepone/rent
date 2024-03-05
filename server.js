@@ -17,13 +17,17 @@ const emailRoute = require("./routes/emailRoute");
 
 const app = express();
 const PORT = process.env.PORT;
+
 app.use(cors());
+
 app.use(bodyParser.json());
+
 app.get("/hello", (req, res) => {
   res.status(200).json({ message: `Hello there!` });
 });
 
 app.use("/auth", authRoute);
+
 app.use(
   "/",
   rolesRoute,
