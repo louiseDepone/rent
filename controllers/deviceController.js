@@ -179,8 +179,8 @@ const Device = {
 
         // Insert availability row for the added device
         const queryInsertAvailability = `
-                INSERT INTO availability (device_id, stock, available, status, soft_deleted)
-                VALUES (?,?,?,?,?)
+                INSERT INTO availability (device_id, stock, available, status)
+                VALUES (?,?,?,?)
             `;
 
         await db
@@ -189,8 +189,7 @@ const Device = {
             deviceId,
             stock,
             available,
-            status,
-            0,
+            status
           ]);
 
         res.status(201).json({
