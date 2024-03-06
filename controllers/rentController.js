@@ -99,11 +99,7 @@ const Rent = {
 
       try {
         // Get the current status_id before updating
-        const currentStatus = await db.query(
-          "SELECT status_id FROM rent WHERE id = ?",
-          [id]
-        );
-
+   
         db.query(
           "UPDATE rent SET full_payment = ?, device_id = ?, rent_end = ?, rent_start = ?, status_id = ?, quantity = ? WHERE id = ?",
           [
@@ -123,9 +119,8 @@ const Rent = {
               res.status(200).json(result);
 
               // If the status_id has changed to 2 (reserved)
-              if (currentStatus[0].status_id !== status_id && status_id === 2) {
+              if (status_id === 2) {
                 // Update availability by subtracting the quantity
-                
                  db.query(
                   "UPDATE availability SET available = available - ? WHERE device_id = ?",
                   [quantity, device_id]
