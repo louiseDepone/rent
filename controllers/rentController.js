@@ -123,15 +123,13 @@ const Rent = {
               res.status(200).json(result);
 
               // If the status_id has changed to 2 (reserved)
-              // Update availability by subtracting the quantity
-              try{
-                  if (currentStatus[0].status_id !== status_id && status_id === 2) {
-
-                   db.query(
-                    "UPDATE availability SET available = available - ? WHERE device_id = ?",
-                    [quantity, device_id]
-                  );
-                }
+              if (currentStatus[0].status_id !== status_id && status_id === 2) {
+                // Update availability by subtracting the quantity
+                
+                 db.query(
+                  "UPDATE availability SET available = available - ? WHERE device_id = ?",
+                  [quantity, device_id]
+                );
               }
             }
           }
