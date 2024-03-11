@@ -21,7 +21,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 
 app.use(bodyParser.json());
-// restarting hays , again, again! , arghh again, AGAAAAAIN!! ARGH idk know na  , again nananman
+// restarting hays , again, again! , arghh , agaaaaain , again, AGAAAAAIN!! ARGH idk know na  , again nananman
 app.get("/hello", (req, res) => {
   res.status(200).json({ message: `Hello there!` });
 });
